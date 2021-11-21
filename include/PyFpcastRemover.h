@@ -9,17 +9,17 @@
 //-----------------------------------------------------------------------------
 // ASTMatcher callback
 //-----------------------------------------------------------------------------
-class LACommenterMatcher
+class FpcastMatcher
     : public clang::ast_matchers::MatchFinder::MatchCallback {
 public:
-  LACommenterMatcher(clang::Rewriter &LACRewriter, std::unique_ptr<llvm::raw_ostream>&& os) : LACRewriter(LACRewriter),  os_(std::move(os))  {}
+  FpcastMatcher(clang::Rewriter &FpcastRewriter, std::unique_ptr<llvm::raw_ostream>&& os) : FpcastRewriter(FpcastRewriter),  os_(std::move(os))  {}
 
   void run(const clang::ast_matchers::MatchFinder::MatchResult &) override;
   void onEndOfTranslationUnit() override;
 
 private:
 
-  clang::Rewriter LACRewriter;
+  clang::Rewriter FpcastRewriter;
   std::unique_ptr<llvm::raw_ostream>&& os_;
   llvm::SmallSet<clang::FullSourceLoc, 8> EditedLocations;
 };
@@ -27,16 +27,16 @@ private:
 //-----------------------------------------------------------------------------
 // ASTConsumer
 //-----------------------------------------------------------------------------
-class LACommenterASTConsumer : public clang::ASTConsumer {
+class FpcastASTConsumer : public clang::ASTConsumer {
 public:
-  LACommenterASTConsumer(clang::Rewriter &R, std::unique_ptr<llvm::raw_ostream>&& os);
+  FpcastASTConsumer(clang::Rewriter &R, std::unique_ptr<llvm::raw_ostream>&& os);
   void HandleTranslationUnit(clang::ASTContext &Ctx) override {
     Finder.matchAST(Ctx);
   }
 
 private:
   clang::ast_matchers::MatchFinder Finder;
-  LACommenterMatcher LACHandler;
+  FpcastMatcher FpcastHandler;
 };
 
 #endif
