@@ -1,7 +1,8 @@
 # Clang Python Wasm Plugin
 A clang plugin to fix up common function pointer casts in Python C code. Thanks
 to [clang-tutor](https://github.com/banach-space/clang-tutor) for helping me to
-understand.
+understand. Both the code itself and especially the CMakeLists files are heavily
+copied from them.
 
 ## Work in progress
 
