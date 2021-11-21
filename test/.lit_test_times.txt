@@ -1,0 +1,2 @@
+6.181026e-02 getset.c
+6.001234e-02 meth_noargs.c
