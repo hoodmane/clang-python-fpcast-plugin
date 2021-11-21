@@ -3,7 +3,7 @@ version: 2.1
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: hoodmane/pyodide-env:19
+    - image: hoodmane/clang-plugin:2
 
 jobs:
   build:
