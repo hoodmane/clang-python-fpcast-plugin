@@ -36,7 +36,7 @@ fine. In wasm, this causes a function signature mismatch trap. We need to patch
 `some_method` to take a second argument.
 
 The second common problem is with getters and setters:
-```
+```C
 PyObject*
 arrayflags_updateifcopy_get(PyObject *self){
     return NULL;
@@ -90,7 +90,7 @@ make
 
 ## Running
 Once you've built the plugin, from the root directory you can run it as:
-```
+```sh
 clang -cc1 -load build/lib/libMyPlugin.so -plugin LAC test/test.c
 ```
 If you get an error like
