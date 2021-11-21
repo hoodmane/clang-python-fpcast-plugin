@@ -33,7 +33,7 @@ https://github.com/python/cpython/blob/main/Objects/methodobject.c#L489 and
 looks like `PyObject *result = meth(PyCFunction_GET_SELF(func), NULL);` In x86,
 it's okay to cast `some_method` to a function of two arguments and call it with
 a second argument. The second argument will be ignored and everything works
-fine. In wasm, this causes a function signature mismatch trap. We need to patch
+fine. In wasm, this causes an "indirect call signature mismatch" trap. We need to patch
 `some_method` to take a second argument.
 
 The second common problem is with getters and setters:
@@ -77,7 +77,7 @@ I think the specific invocation that worked for me was:
 wget https://apt.llvm.org/llvm.sh
 chmod +x llvm.sh
 sudo ./llvm.sh 13
-apt-get install llvm-13-dev clang-13 libclang-13-dev
+apt-get install libclang-13-dev
 ```
 
 ## Building
