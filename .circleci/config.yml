@@ -1,0 +1,42 @@
+version: 2.1
+
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: hoodmane/pyodide-env:19
+
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Build
+          command: |
+            mkdir build; cd build
+            cmake -DClang_INSTALL_DIR=/usr/lib/llvm-13/ ..
+            make
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  
+  test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Test
+          command: |
+            lit test -v
+
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
