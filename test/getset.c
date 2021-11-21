@@ -1,4 +1,4 @@
-// RUN: clang -cc1 -load %S/../build/lib/libMyPlugin.so -plugin LAC %s 2>&1 | FileCheck %s
+// RUN: clang -cc1 -load %S/../build/lib/libPyFpcastRemover.so -plugin pyfpcast %s 2>&1 | FileCheck %s
 
 #include "python_stubs.h"
 

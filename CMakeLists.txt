@@ -74,14 +74,14 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "bin")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "lib")
 
 add_library(
-  MyPlugin
+  PyFpcastRemover
   SHARED
-  lib/MyPlugin.cpp
+  lib/PyFpcastRemover.cpp
 )
 
 # Configure include directories for 'plugin'
 target_include_directories(
-  MyPlugin
+  PyFpcastRemover
   PRIVATE
   "include"
 )
